@@ -1,3 +1,5 @@
+import LoginButton from './_components/LoginButton'
+import UserNav from './_components/UserNav'
 import './globals.css'
 
 export default function RootLayout (
@@ -6,7 +8,8 @@ export default function RootLayout (
   return (
     <html lang="en">
       <body>
-        <div>Rain Check</div>
+        <UserNav />
+        <LoginButton />
         {children}
       </body>
     </html>
