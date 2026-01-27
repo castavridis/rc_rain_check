@@ -3,8 +3,13 @@
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useState } from 'react'
+import dynamic from 'next/dynamic'
 import { rainCheckFormSchema, type RainCheckFormData, type LocationData } from '../_lib/rain-checks/types'
-import { SearchBox } from '@mapbox/search-js-react'
+
+const SearchBox = dynamic(
+  () => import('@mapbox/search-js-react').then(mod => mod.SearchBox),
+  { ssr: false }
+)
 
 export default function RainCheckForm() {
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
