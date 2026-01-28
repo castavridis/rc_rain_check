@@ -5,25 +5,26 @@ import { rainCheckFormSchema } from '../../_lib/rain-checks/types'
 
 export async function POST(request: NextRequest) {
   const session = await getSession()
-
-  if (!session) {
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
-  }
+  if (!session) return NextResponse.json(
+    { error: 'Unauthorized' },
+    { status: 401 }
+  )
 
   const body = await request.json()
-
   const result = rainCheckFormSchema.safeParse(body)
   if (!result.success) {
     const errors = result.error.issues.map(issue => ({
       path: issue.path.join('.'),
       message: issue.message
     }))
-    return NextResponse.json({ error: 'Validation failed', details: errors }, { status: 400 })
+    return NextResponse.json(
+      { error: 'Validation failed', details: errors },
+      { status: 400 }
+    )
   }
 
   const data = result.data
   const supabase = await createClient()
-
   let locationId: number | null = null
 
   // Handle location: find existing or create new
