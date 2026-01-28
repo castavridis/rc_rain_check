@@ -148,3 +148,17 @@ body {
     animation-fill-mode: forwards;
   }
 }
+
+/*
+  https://css-generators.com/wavy-shapes/
+  https://css-tricks.com/how-to-create-wavy-shapes-patterns-in-css/
+*/
+.box {
+  --mask:
+    radial-gradient(16.4px at 50% 23px,#000 99%,#0000 101%) calc(50% - 20px) 0/40px 51% repeat-x,
+    radial-gradient(16.4px at 50% -13px,#0000 99%,#000 101%) 50% 10px/40px calc(51% - 10px) repeat-x,
+    radial-gradient(16.4px at 50% calc(100% - 23px),#000 99%,#0000 101%) calc(50% - 20px) 100%/40px 51% repeat-x,
+    radial-gradient(16.4px at 50% calc(100% + 13px),#0000 99%,#000 101%) 50% calc(100% - 10px)/40px calc(51% - 10px) repeat-x;
+  -webkit-mask: var(--mask);
+          mask: var(--mask);
+}
