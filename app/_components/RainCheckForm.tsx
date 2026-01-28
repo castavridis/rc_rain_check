@@ -72,87 +72,90 @@ export default function RainCheckForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="max-w-md space-y-4">
-      <div>
-        <label htmlFor="title" className="block text-sm font-medium text-zinc-700">
-          Title <span className="text-red-500">*</span>
-        </label>
-        <input
-          id="title"
-          type="text"
-          {...register('title')}
-          className="mt-1 block w-full rounded-md border border-zinc-300 px-3 py-2 shadow-sm focus:border-green-500 focus:outline-none focus:ring-1 focus:ring-green-500"
-        />
-        {errors.title && (
-          <p className="mt-1 text-sm text-red-500">{errors.title.message}</p>
+    <div className="bg-amber-50 rounded-md p-4 max-w-120">
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 max-w-md mx-auto">
+        <h2 className="text-2x">Event Proposal</h2>
+        <div>
+          <label htmlFor="title" className="block text-sm font-medium text-zinc-700">
+            Title <span className="text-red-500">*</span>
+          </label>
+          <input
+            id="title"
+            type="text"
+            {...register('title')}
+            className="mt-1 block w-full rounded-md border border-zinc-300 px-3 py-2 shadow-sm focus:border-green-500 focus:outline-none focus:ring-1 focus:ring-green-500"
+          />
+          {errors.title && (
+            <p className="mt-1 text-sm text-red-500">{errors.title.message}</p>
+          )}
+        </div>
+
+        <div>
+          <label htmlFor="proposed_datetime" className="block text-sm font-medium text-zinc-700">
+            Proposed Date & Time
+          </label>
+          <input
+            id="proposed_datetime"
+            type="datetime-local"
+            {...register('proposed_datetime')}
+            className="mt-1 block w-full rounded-md border border-zinc-300 px-3 py-2 shadow-sm focus:border-green-500 focus:outline-none focus:ring-1 focus:ring-green-500"
+          />
+          {errors.proposed_datetime && (
+            <p className="mt-1 text-sm text-red-500">{errors.proposed_datetime.message}</p>
+          )}
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium text-zinc-700 mb-1">
+            Location
+          </label>
+          <SearchBox
+            accessToken={process.env.NEXT_PUBLIC_MAPBOX_KEY!}
+            options={{
+              language: 'en',
+              country: 'US'
+            }}
+            onRetrieve={handleLocationSelect}
+          />
+          {selectedLocation && (
+            <p className="mt-1 text-sm text-zinc-500">{selectedLocation.address}</p>
+          )}
+          {errors.location && (
+            <p className="mt-1 text-sm text-red-500">{errors.location.message}</p>
+          )}
+        </div>
+
+        <div>
+          <label htmlFor="category_id" className="block text-sm font-medium text-zinc-700">
+            Category ID
+          </label>
+          <input
+            id="category_id"
+            type="number"
+            {...register('category_id', { valueAsNumber: true })}
+            className="mt-1 block w-full rounded-md border border-zinc-300 px-3 py-2 shadow-sm focus:border-green-500 focus:outline-none focus:ring-1 focus:ring-green-500"
+          />
+          {errors.category_id && (
+            <p className="mt-1 text-sm text-red-500">{errors.category_id.message}</p>
+          )}
+        </div>
+
+        <button
+          type="submit"
+          disabled={submitStatus === 'loading'}
+          className="w-full rounded-md bg-green-500 px-4 py-2 text-white hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 disabled:bg-green-300"
+        >
+          {submitStatus === 'loading' ? 'Creating...' : 'Create Rain Check'}
+        </button>
+
+        {submitStatus === 'success' && (
+          <p className="text-sm text-green-600">Rain check created successfully!</p>
         )}
-      </div>
 
-      <div>
-        <label htmlFor="proposed_datetime" className="block text-sm font-medium text-zinc-700">
-          Proposed Date & Time
-        </label>
-        <input
-          id="proposed_datetime"
-          type="datetime-local"
-          {...register('proposed_datetime')}
-          className="mt-1 block w-full rounded-md border border-zinc-300 px-3 py-2 shadow-sm focus:border-green-500 focus:outline-none focus:ring-1 focus:ring-green-500"
-        />
-        {errors.proposed_datetime && (
-          <p className="mt-1 text-sm text-red-500">{errors.proposed_datetime.message}</p>
+        {submitStatus === 'error' && (
+          <p className="text-sm text-red-500">{errorMessage}</p>
         )}
-      </div>
-
-      <div>
-        <label className="block text-sm font-medium text-zinc-700 mb-1">
-          Location
-        </label>
-        <SearchBox
-          accessToken={process.env.NEXT_PUBLIC_MAPBOX_KEY!}
-          options={{
-            language: 'en',
-            country: 'US'
-          }}
-          onRetrieve={handleLocationSelect}
-        />
-        {selectedLocation && (
-          <p className="mt-1 text-sm text-zinc-500">{selectedLocation.address}</p>
-        )}
-        {errors.location && (
-          <p className="mt-1 text-sm text-red-500">{errors.location.message}</p>
-        )}
-      </div>
-
-      <div>
-        <label htmlFor="category_id" className="block text-sm font-medium text-zinc-700">
-          Category ID
-        </label>
-        <input
-          id="category_id"
-          type="number"
-          {...register('category_id', { valueAsNumber: true })}
-          className="mt-1 block w-full rounded-md border border-zinc-300 px-3 py-2 shadow-sm focus:border-green-500 focus:outline-none focus:ring-1 focus:ring-green-500"
-        />
-        {errors.category_id && (
-          <p className="mt-1 text-sm text-red-500">{errors.category_id.message}</p>
-        )}
-      </div>
-
-      <button
-        type="submit"
-        disabled={submitStatus === 'loading'}
-        className="w-full rounded-md bg-green-500 px-4 py-2 text-white hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 disabled:bg-green-300"
-      >
-        {submitStatus === 'loading' ? 'Creating...' : 'Create Rain Check'}
-      </button>
-
-      {submitStatus === 'success' && (
-        <p className="text-sm text-green-600">Rain check created successfully!</p>
-      )}
-
-      {submitStatus === 'error' && (
-        <p className="text-sm text-red-500">{errorMessage}</p>
-      )}
-    </form>
+      </form>
+    </div>
   )
 }
