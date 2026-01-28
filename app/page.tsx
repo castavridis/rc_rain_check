@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic'
 import { getUser } from './_lib/auth/session'
-import RainCheckForm from './_components/RainCheckForm'
+import RainCheckForm from './_components/RainCheckFormII'
 
 const GradientToggle = dynamic(
   () => import('./_components/GradientToggle')

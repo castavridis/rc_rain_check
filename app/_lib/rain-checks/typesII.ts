@@ -136,12 +136,12 @@ export type RainCheck = {
   palette_id: number
   custom_composition_id: number
 }
-export const RainCheckFormSchema = {
+export const RainCheckFormSchema = z.object({
   creation_location: LocationSchema.nullish(),
   category_id: idHelper("Category"),
   message: z.string().nullish(),
   recipient: UserSchema,
   new_event: EventSchema,
   prev_event: PrevEventSchema.nullish(),
-}
+})
 export type RainCheckFormData = z.infer<typeof RainCheckFormSchema>
