@@ -162,3 +162,37 @@ body {
   -webkit-mask: var(--mask);
           mask: var(--mask);
 }
+
+.ticket-container {
+  filter: drop-shadow(2px 2px 3px #0005);
+  transform: rotate(1.5deg);
+}
+.ticket {
+    --puncture-size: 2.5px;
+  --puncture-spacing: 2.5px;
+  --perforation-height: calc(
+    var(--puncture-size) * 2 +
+    var(--puncture-spacing) * 2
+  );
+  --coupon-height: calc(var(--perforation-height) * 7);
+  text-align: center;
+  font-size: 0.9rem;
+  line-height: 1.25;
+  mask-image: radial-gradient(var(--puncture-size) at 0 50%, white 99%, black 101%),
+    radial-gradient(var(--puncture-size) at 100% 50%, black 99%, white 101%);
+  mask-composite: exclude;
+  mask-mode: luminance;
+  mask-size: 100% var(--perforation-height);
+  background: rgb(250,245,235);
+  height: auto;
+  min-height: var(--coupon-height);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem;
+  position: relative;
+}
+
+.ticket-container.from {
+  transform: rotate(-1deg);
+}

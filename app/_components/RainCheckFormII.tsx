@@ -52,8 +52,10 @@ export default function RainCheckForm() {
 
   const map_image = async () => {
     if (selectedLocation) {
-      let base_url = "https://api.mapbox.com/styles/v1/castavridis/cmkya624n006p01qr4dsbb5iq/static"
-      base_url += `/${selectedLocation.longitude}`
+      let base_url = "https://api.mapbox.com/styles/v1/"
+      // base_url += "castavridis/cmkya624n006p01qr4dsbb5iq/"
+      base_url += "mapbox/satellite-v9/"
+      base_url += `static/${selectedLocation.longitude}`
       base_url += `,${selectedLocation.latitude},15,0`
       base_url += `/250x250@2x?access_token=${process.env.NEXT_PUBLIC_MAPBOX_KEY}`
       setMapImgSrc(`${base_url}&attribution=false&logo=false`)
@@ -69,41 +71,89 @@ export default function RainCheckForm() {
   const onSubmit = () => {}
 
   return (
-    <div>
-      {
-        errors && 
-          <div className="rounded-md bg-red-300 border border-red-600">
-            {JSON.stringify(errors)}
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <div className="flex gap-4">
+        <div>
+          <div className="ticket-container">
+            <div className="ticket flex">
+              <label htmlFor="recipient_name">
+                <span className="font-bold">To: </span>
+                <input className="p-2 border-b" type="text" style={{ fontFamily: 'cursive'}} placeholder="Recipient's name" />
+              </label>
+            </div>
           </div>
-      }
-      {
-        selectedLocation &&
-          <div className="rounded-md bg-green-200 border border-green-500">
-            {JSON.stringify(selectedLocation)}
+          <div className="ticket-container from mt-0">
+            <div className="ticket flex flex-col gap-4">
+              <div className="mt-2">FROM</div>
+              <label htmlFor="sender_name">
+                <span className="font-bold">Name </span>
+                <input id="sender_name" className="p-2 border-b" type="text" style={{ fontFamily: 'cursive'}} placeholder="Your name" />
+              </label>
+              <label htmlFor="sender_email">
+                <span className="font-bold">Email </span>
+                <input id="sender_email" className="p-2 border-b" type="text" style={{ fontFamily: 'cursive'}} placeholder="Your email" />
+              </label>
+              <label htmlFor="sender_reason">
+                <span className="font-bold block mb-2">Cancellation Reason </span>
+                <div className="p-2 border-b text-zinc-400 border-b-zinc-950" style={{
+                  fontFamily: 'cursive'
+                }}>
+                  <select id="sender_reason">
+                    <option>It better be good...</option>
+                    <option>Health Issue</option>
+                    <option>Work Conflict</option>
+                    <option>Family Obligation</option>
+                    <option>Scheduling Issue</option>
+                    <option>Unexpected Travel</option>
+                    <option>Emergency</option>
+                    <option>Emotional Capacity</option>
+                    <option>Other</option>
+                  </select>
+                </div>
+              </label>
+            </div>
           </div>
-      }
-      {
-        rawLocation &&
-          <div className="rounded-md bg-yellow-50 border border-yellow-400">
-            {JSON.stringify(rawLocation)}
-          </div>
-      }
-      {
-        selectedLocation && mapImgSrc.trim()
-          && <img src={mapImgSrc} alt={`Satelite map view of ${selectedLocation.place_name}`} />
-      }
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <label className="block">
-          Location
-        </label>
-        <SearchBox
-          accessToken={process.env.NEXT_PUBLIC_MAPBOX_KEY!}
-          options={{
-            language: 'en',
-            country: 'US',
-          }}
-          onRetrieve={handleRetrieve} />
-      </form>
-    </div>
+        </div>
+        <div className="bg-amber-50 rounded-md p-4">
+          {
+            errors?.message && 
+              <div className="rounded-md bg-red-300 border border-red-600">
+                {JSON.stringify(errors)}
+              </div>
+          }
+          {
+            selectedLocation &&
+              <div className="rounded-md bg-green-200 border border-green-500">
+                {JSON.stringify(selectedLocation)}
+              </div>
+          }
+          {
+            rawLocation &&
+              <div className="rounded-md bg-yellow-50 border border-yellow-400">
+                {JSON.stringify(rawLocation)}
+              </div>
+          }
+          {
+            selectedLocation && mapImgSrc.trim()
+              && <img src={mapImgSrc} alt={`Satelite map view of ${selectedLocation.place_name}`} />
+          }
+            <div className="flex flex-col gap-4">
+              <div>Proposed Event</div>
+              <div>
+                <label className="block">
+                  Location
+                </label>
+                <SearchBox
+                  accessToken={process.env.NEXT_PUBLIC_MAPBOX_KEY!}
+                  options={{
+                    language: 'en',
+                    country: 'US',
+                  }}
+                  onRetrieve={handleRetrieve} />
+              </div>
+            </div>
+        </div>
+      </div>
+    </form>
   )
 }
