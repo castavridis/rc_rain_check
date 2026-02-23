@@ -135,7 +135,7 @@ export default function RainCheckForm() {
           }
           {
             selectedLocation && mapImgSrc.trim()
-              && <img src={mapImgSrc} alt={`Satelite map view of ${selectedLocation.place_name}`} />
+              && <img className="contrast-100 grayscale brightness-100 mix-blend-color-burn opacity-50 rounded-full" src={mapImgSrc} alt={`Satelite map view of ${selectedLocation.place_name}`} />
           }
             <div className="flex flex-col gap-4">
               <div>Proposed Event</div>
