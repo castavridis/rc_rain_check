@@ -9,8 +9,9 @@ export default function RootLayout (
 
   return (
     <html lang="en">
-      <body>
-        <div className="gradient-background dawn-dusk fixed inset-0 z-0" aria-hidden="true">
+      <body className="bg-black">
+        { children }
+        {/* <div className="gradient-background dawn-dusk fixed inset-0 z-0" aria-hidden="true">
           <div className="gradient-bg absolute inset-0" aria-hidden="true"></div>
           <div className="gradient-mg absolute inset-0" aria-hidden="true"></div>
           <div className="gradient-fg absolute inset-0" aria-hidden="true"></div>
@@ -19,7 +20,7 @@ export default function RootLayout (
         <div className="relative z-10">
           <UserNav />
           {children}
-        </div>
+        </div> */}
       </body>
     </html>
   )

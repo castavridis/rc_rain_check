@@ -117,7 +117,7 @@ function FieldsetContainer ({
   children: React.ReactNode
   className?: string
 }): React.ReactElement {
-  let classes = "rounded-md"
+  let classes = "rounded-md drop-shadow-fieldset"
   if (className) {
     classes = classes + " " + className
   }

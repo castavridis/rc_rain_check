@@ -21,6 +21,7 @@
   --color-paper-yellow-dark: rgb(240,205,0);
   
   --color-paper-white: #FFFEF8;
+  --color-paper-gray: #BFBFBF;
   --color-paper-black: #404040;
 
   --color-accent-blue: #0D6193;
@@ -28,6 +29,8 @@
   --color-accent-red: #DA4942;
   --color-accent-orange: #E9842F;
   --color-accent-white: #E9E2C7;
+
+  --drop-shadow-fieldset: 2px 2px 0px black;
 }
 
 :root {
