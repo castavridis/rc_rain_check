@@ -1,6 +1,6 @@
-import LoginButton from './_components/LoginButton'
-import RainCheckForm from './_components/RainCheckForm'
-import UserNav from './_components/UserNav'
+import LoginButton from './(components)/LoginButton'
+import RainCheckForm from './(components)/RainCheckForm'
+import UserNav from './(components)/UserNav'
 import './globals.css'
 
 export default function RootLayout (
