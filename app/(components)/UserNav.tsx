@@ -1,4 +1,4 @@
-import { getUser } from '@/app/_lib/auth/session'
+import { getUser } from '@/app/(lib)/auth/session'
 
 export default async function UserNav() {
   const user = await getUser()

@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { createClient } from '../../_lib/supabase/server'
-import { getSession } from '../../_lib/auth/session'
-import { rainCheckFormSchema } from '../../_lib/rain-checks/types'
+import { createClient } from '../../(lib)/supabase/server'
+import { getSession } from '../../(lib)/auth/session'
+import { rainCheckFormSchema } from '../../(lib)/rain-checks/types'
 
 export async function POST(request: NextRequest) {
   const session = await getSession()

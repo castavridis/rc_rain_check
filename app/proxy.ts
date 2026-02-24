@@ -1,7 +1,7 @@
 // via https://supabase.com/docs/guides/auth/server-side/creating-a-client
 
 import { type NextRequest } from "next/server"
-import { updateSession } from "@/app/_lib/supabase/proxy"
+import { updateSession } from "@/app/(lib)/supabase/proxy"
 
 export async function proxy(request: NextRequest) {
   return await updateSession(request)

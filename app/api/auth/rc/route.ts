@@ -1,9 +1,9 @@
 import { cookies } from 'next/headers'
 import { NextRequest, NextResponse } from 'next/server'
-import { exchangeCodeForToken, fetchUserProfile } from '@/app/_lib/auth/rc-oauth'
-import { createSessionCookie } from '@/app/_lib/auth/session'
-import { Session } from '@/app/_lib/auth/types'
-import { createClient } from '@/app/_lib/supabase/client'
+import { exchangeCodeForToken, fetchUserProfile } from '@/app/(lib)/auth/rc-oauth'
+import { createSessionCookie } from '@/app/(lib)/auth/session'
+import { Session } from '@/app/(lib)/auth/types'
+import { createClient } from '@/app/(lib)/supabase/client'
 
 const STATE_COOKIE_NAME = 'oauth_state'
 

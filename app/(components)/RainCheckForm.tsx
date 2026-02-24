@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
-import { rainCheckFormSchema, type RainCheckFormData, type LocationData } from '../_lib/rain-checks/types'
+import { rainCheckFormSchema, type RainCheckFormData, type LocationData } from '../(lib)/rain-checks/types'
 
 const SearchBox = dynamic(
   () => import('@mapbox/search-js-react').then(mod => mod.SearchBox),
