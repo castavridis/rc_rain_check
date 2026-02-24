@@ -304,7 +304,36 @@ function LocationInput () {
   )
 }
 
-function PaperworkProgress () {}
+function PaperworkProgress ({
+  register
+}: {
+  register: UseFormRegister<FieldValues>
+}) {
+  return (
+    <FieldsetContainer className="bg-paper-white rounded-md fixed right-8 bottom-8 max-w-78">
+      <fieldset>
+        <FieldsetLegend
+          className="border-b-2 border-b-paper-pink"
+          title="Required Paperwork"
+          type="title"
+        >
+          <></>
+        </FieldsetLegend>
+        <p className={"text-paper-black border-b border-b-paper-blue-mid border-dashed text-sm p-4 " + sono.className}>Fill out some information to issue a rain check for your loved one(s).</p>
+        <DottedRadio className="border-paper-blue-mid" fieldName="name" label="Name(s) of Recipient(s)" register={register} required />
+        <DottedRadio className="border-paper-blue-mid" fieldName="name" label="Canceled Event Information" register={register} required />
+        <DottedRadio className="border-paper-blue-mid" fieldName="name" label="Accent Color" register={register} />
+        <DottedRadio className="border-paper-blue-mid" fieldName="name" label="Reason for Rain Check" register={register} required />
+        <DottedRadio className="border-paper-blue-mid" fieldName="name" label="New Event Information" register={register} required />
+        <DottedRadio className="border-paper-blue-mid" fieldName="name" label="Message" register={register} required />
+      </fieldset>
+      <div className={"text-sm text-center p-4 " + sono.className }>
+        <div className="p-4 rounded-md border border-paper-black border-dashed">Issue Rain Check</div>
+        {/* <div className={"p-4 rounded-md bg-paper-green " + sono_bold.className }>Issue Rain Check</div> */}
+      </div>
+    </FieldsetContainer>
+  )
+}
 
 
 export default function RainCheckFormIII (): React.ReactElement {
@@ -335,14 +364,14 @@ export default function RainCheckFormIII (): React.ReactElement {
             <FieldsetMessage register={register} />
           </div>
         </div>
-        <div className="rounded-sm bg-amber-50">
+        <PaperworkProgress register={register} />
+        {/* <div className="rounded-sm bg-amber-50">
           {
             isComplete
               ? <button type="submit">Issue Rain Check</button>
               : <button type="button">Next</button>
           }
-          
-        </div>
+        </div> */}
       </form>
       {/* <img src="/assets/img/form.png" /> */}
       </div>
