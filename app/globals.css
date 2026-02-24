@@ -50,7 +50,8 @@
 
 .wood-bg {
   background-image: url('/assets/img/wood-bg.jpeg');
-  background-size: contain;
+  background-size: cover;
+  background-position: center;
 }
 
 .noise {

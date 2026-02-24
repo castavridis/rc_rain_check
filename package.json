@@ -19,6 +19,7 @@
     "@mapbox/search-js-react": "^1.5.1",
     "@supabase/ssr": "^0.8.0",
     "@supabase/supabase-js": "^2.93.1",
+    "lucide-react": "^0.575.0",
     "next": "^16.1.4",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",

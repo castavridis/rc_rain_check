@@ -5,24 +5,13 @@ import { useForm, type UseFormRegister, type FieldValues } from 'react-hook-form
 import zod from 'zod'
 import type { SearchBoxFeatureSuggestion, SearchBoxRetrieveResponse } from '@mapbox/search-js-core'
 import { LocationData } from '../(lib)/rain-checks/typesII'
-import { Young_Serif, Sono } from 'next/font/google'
-import { SearchBox } from '@mapbox/search-js-react'
-
-const young = Young_Serif({
-  subsets: ['latin'],
-  display: 'swap',
-  weight: '400',
-})
-const sono = Sono({
-  subsets: ['latin'],
-  display: 'swap',
-  weight: '300',
-})
-const sono_bold = Sono({
-  subsets: ['latin'],
-  display: 'swap',
-  weight: '600',
-})
+import { young } from './fonts/young'
+import { sono, sono_bold } from './fonts/sono'
+import dynamic from 'next/dynamic'
+const SearchBox = dynamic(
+  () => import('@mapbox/search-js-react').then(mod => mod.SearchBox),
+  { ssr: false }
+)
 
 function DottedInput ({
   register,
@@ -71,7 +60,7 @@ function DottedRadio ({
   required?: boolean
   type?: HTMLInputTypeAttribute
 }) {
-  let classes = "w-full border-b border-dashed px-4 py-3 text-sm flex " + sono.className
+  let classes = "w-full border-b border-dashed px-4 py-3 text-sm flex items-center " + sono.className
   if (className) {
     classes += " " + className
   }
@@ -310,7 +299,7 @@ function PaperworkProgress ({
   register: UseFormRegister<FieldValues>
 }) {
   return (
-    <FieldsetContainer className="bg-paper-white rounded-md fixed right-8 bottom-8 max-w-78">
+    <FieldsetContainer className="bg-paper-white rounded-md fixed right-8 bottom-24 max-w-78">
       <fieldset>
         <FieldsetLegend
           className="border-b-2 border-b-paper-pink"
@@ -319,7 +308,7 @@ function PaperworkProgress ({
         >
           <></>
         </FieldsetLegend>
-        <p className={"text-paper-black border-b border-b-paper-blue-mid border-dashed text-sm p-4 " + sono.className}>Fill out some information to issue a rain check for your loved one(s).</p>
+        {/* <p className={"text-paper-black border-b border-b-paper-blue-mid border-dashed text-sm p-4 " + sono.className}>Fill out some information to issue a rain check for your loved one(s).</p> */}
         <DottedRadio className="border-paper-blue-mid" fieldName="name" label="Name(s) of Recipient(s)" register={register} required />
         <DottedRadio className="border-paper-blue-mid" fieldName="name" label="Canceled Event Information" register={register} required />
         <DottedRadio className="border-paper-blue-mid" fieldName="name" label="Accent Color" register={register} />
