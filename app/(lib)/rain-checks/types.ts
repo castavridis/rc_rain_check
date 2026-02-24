@@ -21,9 +21,7 @@ export const rainCheckFormSchema = z.object({
     .number()
     .int()
     .positive('Category ID must be positive')
-    .nullable()
-    .optional()
-    .transform(val => val ?? null),
+    .nullable(),
 })
 
 export type LocationData = z.infer<typeof locationSchema>
