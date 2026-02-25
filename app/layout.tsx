@@ -9,7 +9,7 @@ export default function RootLayout (
 
   return (
     <html lang="en">
-      <body className="bg-black">
+      <body className="bg-paper-dark-black">
         { children }
         {/* <div className="gradient-background dawn-dusk fixed inset-0 z-0" aria-hidden="true">
           <div className="gradient-bg absolute inset-0" aria-hidden="true"></div>

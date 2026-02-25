@@ -18,6 +18,9 @@ export default async function Page(): Promise<React.ReactElement> {
 
   return (
     <div className="wood-bg fixed top-0 left-0 right-0 bottom-0 flex items-center justify-center">
+      <div className="bg-paper-dark-black fixed top-0 left-0 right-0 bottom-0 opacity-65">
+        {/* This exists to lighten the wood bg to add more contrast between InformationBlurb, GridToggle and Navigation */}
+      </div>
       <RainCheckFormIII />
       <InformationBlurb />
       <GridToggle />
