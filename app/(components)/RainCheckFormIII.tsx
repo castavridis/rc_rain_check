@@ -8,6 +8,7 @@ import { LocationData } from '../(lib)/rain-checks/typesII'
 import { young } from './fonts/young'
 import { sono, sono_bold } from './fonts/sono'
 import dynamic from 'next/dynamic'
+import playPaperSound from '../(lib)/utils/rustling-paper'
 const SearchBox = dynamic(
   () => import('@mapbox/search-js-react').then(mod => mod.SearchBox),
   { ssr: false }
@@ -110,6 +111,23 @@ function FieldsetLegend ({
       )
   }
 }
+
+function PaperSound ({
+  children,
+}: {
+  children: React.ReactElement
+}) {
+  return (
+    <div 
+      className="border-2 border-accent-red"
+      onMouseEnter={() => playPaperSound('pickup') }
+      onMouseLeave={() => playPaperSound('tap') }
+    >
+      { children }
+    </div>
+  )
+}
+
 function FieldsetContainer ({
   children,
   className,
@@ -118,11 +136,14 @@ function FieldsetContainer ({
   className?: string
 }): React.ReactElement {
   let classes = "rounded-md drop-shadow-fieldset"
+
   if (className) {
     classes = classes + " " + className
   }
   return (
-    <div className={classes}>
+    <div 
+      className={classes}
+    >
       { children }
     </div>
   )
