@@ -1,5 +1,5 @@
 import LoginButton from './(components)/LoginButton'
-import RainCheckForm from './(components)/RainCheckForm'
+import RainCheckForm from './(components)/_archive/RainCheckForm'
 import UserNav from './(components)/UserNav'
 import './globals.css'
 

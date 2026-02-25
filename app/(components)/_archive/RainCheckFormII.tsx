@@ -5,9 +5,9 @@ import dynamic from 'next/dynamic'
 import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { RainCheckFormData, RainCheckFormSchema } from '../(lib)/rain-checks/typesII'
+import { RainCheckFormData, RainCheckFormSchema } from '../../(lib)/rain-checks/typesII'
 import type { SearchBoxFeatureSuggestion, SearchBoxRetrieveResponse } from '@mapbox/search-js-core'
-import { LocationData } from '../(lib)/rain-checks/typesII'
+import { LocationData } from '../../(lib)/rain-checks/typesII'
 
 const SearchBox = dynamic(
   () => import('@mapbox/search-js-react').then(mod => mod.SearchBox),
